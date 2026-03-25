@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Mining × Dynamic Code — Transport Platform Proposal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @page { size: A4; margin: 0; }
+        @media print {
+            body { margin: 0; padding: 0; background: #fff; }
+            .page { margin: 0; box-shadow: none; page-break-after: always; page-break-inside: avoid; }
+            .page:last-child { page-break-after: avoid; }
+            .no-print { display: none !important; }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --black: #0a0a0a;
+            --gray-900: #262626;
+            --gray-700: #404040;
+            --gray-500: #6b6b6b;
+            --gray-300: #a3a3a3;
+            --gray-100: #f5f5f5;
+            --white: #ffffff;
+            --accent: #F5A623;
+            --accent-dark: #C4831A;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--gray-100);
+            color: var(--black);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 210mm; margin: 0 auto; padding: 20px; }
+        .page {
+            width: 210mm; min-height: 297mm; background: white;
+            margin: 0 auto 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            position: relative; overflow: hidden;
+        }
+        .page-inner { padding: 15mm 20mm; position: relative; z-index: 2; }
+        .cover { display: flex; flex-direction: column; justify-content: space-between; min-height: 267mm; }
+        .cover-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40mm; }
+        .logo-img { height: 28px; width: auto; opacity: 0.9; }
+        .nexus-logo {
+            font-family: 'Inter', sans-serif; font-size: 22pt; font-weight: 700;
+            color: var(--black); letter-spacing: -0.5px;
+        }
+        .nexus-logo span { color: var(--accent); }
+        .cover-main { flex: 1; }
+        .cover-eyebrow { font-size: 11pt; font-weight: 500; text-transform: uppercase; letter-spacing: 1.2px; color: var(--gray-500); margin-bottom: 8mm; }
+        .cover-title { font-size: 44pt; font-weight: 700; line-height: 1.1; margin-bottom: 6mm; color: var(--black); }
+        .cover-subtitle { font-size: 18pt; font-weight: 500; color: var(--gray-700); margin-bottom: 4mm; }
+        .cover-description { font-size: 12pt; line-height: 1.7; color: var(--gray-500); max-width: 140mm; }
+        .cover-footer {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 8mm; padding-top: 8mm; border-top: 1px solid var(--gray-300);
+        }
+        .cover-footer-item { display: flex; flex-direction: column; gap: 2mm; }
+        .cover-footer-label { font-size: 9pt; font-weight: 500; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray-500); }
+        .cover-footer-value { font-size: 11pt; font-weight: 600; color: var(--black); }
+        .accent-bar {
+            position: absolute; top: 0; left: 0; width: 5mm; height: 100%;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--accent-dark) 100%);
+        }
+        .page-header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 12mm; padding-bottom: 3mm; border-bottom: 1px solid var(--gray-300);
+        }
+        .page-header-logo { height: 22px; width: auto; opacity: 0.7; }
+        .page-header-title { font-size: 9pt; font-weight: 500; color: var(--gray-500); }
+        h1 { font-size: 30pt; font-weight: 700; line-height: 1.2; margin-bottom: 8mm; color: var(--black); }
+        h2 { font-size: 15pt; font-weight: 600; margin-bottom: 4mm; color: var(--black); }
+        h3 { font-size: 12pt; font-weight: 600; margin-bottom: 3mm; color: var(--black); }
+        p { font-size: 11pt; line-height: 1.7; color: var(--gray-700); margin-bottom: 3mm; }
+        ul { list-style: none; padding: 0; }
+        ul li { font-size: 11pt; line-height: 1.8; color: var(--gray-700); padding-left: 5mm; position: relative; margin-bottom: 2mm; }
+        ul li:before { content: "•"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+        .section { margin-bottom: 8mm; }
+        .info-card { background: var(--gray-100); border-left: 3px solid var(--accent); padding: 5mm; border-radius: 2mm; margin-bottom: 6mm; }
+        .info-card ul { margin: 0; }
+        .deliverables-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-bottom: 8mm; }
+        .deliverable-card { background: var(--gray-100); padding: 4mm; border-radius: 2mm; border-top: 2px solid var(--accent); }
+        .deliverable-icon { font-size: 20pt; margin-bottom: 2mm; }
+        .deliverable-title { font-size: 11pt; font-weight: 600; margin-bottom: 2mm; color: var(--black); }
+        .deliverable-desc { font-size: 9pt; line-height: 1.5; color: var(--gray-700); }
+        .phases-list { display: flex; flex-direction: column; gap: 4mm; }
+        .phase-item { display: flex; gap: 4mm; align-items: flex-start; padding: 4mm; background: var(--gray-100); border-radius: 2mm; }
+        .phase-num {
+            min-width: 8mm; height: 8mm; background: var(--accent); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 9pt; font-weight: 700; color: white; flex-shrink: 0; margin-top: 0.5mm;
+        }
+        .phase-content h3 { font-size: 11pt; font-weight: 700; margin-bottom: 1mm; color: var(--black); }
+        .phase-content p { font-size: 9pt; line-height: 1.5; color: var(--gray-700); margin: 0; }
+        .pricing-card { background: var(--black); color: var(--white); padding: 8mm; border-radius: 3mm; margin-bottom: 8mm; }
+        .pricing-row { display: flex; justify-content: space-between; align-items: center; padding: 3mm 0; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .pricing-row:last-child { border-bottom: none; }
+        .pricing-label { font-size: 11pt; font-weight: 500; color: rgba(255,255,255,0.8); }
+        .pricing-value { font-size: 12pt; font-weight: 600; color: var(--white); }
+        .pricing-total { margin-top: 4mm; padding-top: 4mm; border-top: 2px solid var(--accent); }
+        .pricing-total-label { font-size: 14pt; font-weight: 600; color: rgba(255,255,255,0.8); }
+        .pricing-total-value { font-size: 24pt; font-weight: 700; color: var(--white); }
+        .signature-section { margin-top: 10mm; padding: 8mm; background: var(--gray-100); border-radius: 3mm; }
+        .signature-canvas-wrapper { background: white; border: 2px dashed var(--gray-300); border-radius: 2mm; padding: 8mm; margin-bottom: 4mm; min-height: 30mm; }
+        .signature-placeholder { text-align: center; color: var(--gray-500); font-size: 10pt; padding: 20mm 0; }
+        #signatureCanvas { border: none; cursor: crosshair; width: 100%; height: 100px; }
+        .signature-buttons { display: flex; gap: 3mm; margin-bottom: 4mm; }
+        .btn { padding: 3mm 6mm; border: none; border-radius: 2mm; font-size: 10pt; font-weight: 600; cursor: pointer; }
+        .btn-primary { background: var(--black); color: var(--white); }
+        .btn-secondary { background: var(--gray-300); color: var(--black); }
+        .signature-info { font-size: 9pt; color: var(--gray-500); line-height: 1.6; }
+        .page-number { position: absolute; bottom: 15mm; right: 20mm; font-size: 9pt; font-weight: 500; color: var(--gray-500); }
+        /* Login */
+        #passwordScreen {
+            position: fixed; inset: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+            display: flex; align-items: center; justify-content: center; z-index: 9999;
+        }
+        .password-box { background: white; padding: 48px 40px; border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.15); text-align: center; max-width: 420px; width: 90%; }
+        .password-logo { font-size: 18px; font-weight: 700; margin-bottom: 32px; color: var(--black); }
+        .password-box h2 { margin: 0 0 8px; font-size: 28px; font-weight: 700; color: var(--black); }
+        .password-box p { margin: 0 0 32px; font-size: 14px; color: var(--gray-500); line-height: 1.5; }
+        .password-input-wrapper { position: relative; margin-bottom: 24px; }
+        .password-box input { width: 100%; padding: 12px 44px 12px 16px; border: 1px solid var(--gray-300); border-radius: 8px; font-size: 16px; background: #f9fafb; color: var(--black); outline: none; box-sizing: border-box; }
+        .password-box input:focus { background: white; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(245,166,35,0.12); }
+        .password-toggle { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 6px; opacity: 0.5; color: var(--gray-500); display: flex; align-items: center; }
+        .password-toggle:hover { opacity: 0.8; }
+        .eye-icon { width: 18px; height: 18px; }
+        .password-submit-btn { width: 100%; padding: 12px; background: var(--black); color: white; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; }
+        .password-submit-btn:hover { background: var(--gray-900); }
+        .password-error { color: #dc2626; font-size: 13px; margin-top: 12px; }
+        @media screen and (max-width: 900px) {
+            .container { padding: 10px; }
+            .page { width: 100%; min-height: auto; margin-bottom: 10px; }
+            .page-inner { padding: 8mm 10mm; }
+            .cover-title { font-size: 28pt; }
+            .deliverables-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Login -->
+<div id="passwordScreen">
+    <div class="password-box">
+        <div class="password-logo">Dynamic Code</div>
+        <h2>Client Portal</h2>
+        <p>Access your proposals, projects, and deliverables</p>
+        <div class="password-input-wrapper">
+            <input type="password" id="passwordInput" placeholder="Enter password">
+            <button class="password-toggle" id="passwordToggle" type="button" onclick="togglePasswordVisibility()" aria-label="Show password">
+                <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                    <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+            </button>
+        </div>
+        <button onclick="checkPassword()" class="password-submit-btn">Sign in</button>
+        <div id="passwordError" class="password-error"></div>
+    </div>
+</div>
+
+<div class="container" id="proposalContent" style="display: none;">
+
+    <!-- PAGE 1: COVER -->
+    <div class="page" id="cover">
+        <div class="page-inner cover">
+            <div class="cover-header">
+                <div class="nexus-logo">NEXUS<span>.</span>MINING</div>
+                <img src="dynamiccode-logo.svg" alt="Dynamic Code" class="logo-img">
+            </div>
+            <div class="cover-main">
+                <p class="cover-eyebrow">Web Application Proposal</p>
+                <h1 class="cover-title">Mining Transport<br>Booking &<br>Check-In System</h1>
+                <p class="cover-subtitle">Full-Stack Transport Operations Platform</p>
+                <p class="cover-description">A centralised, automated, and scalable digital platform to replace manual spreadsheets — managing bookings, scheduling, check-ins, notifications, and reporting for DIDO mining transport operations.</p>
+            </div>
+            <div class="cover-footer">
+                <div class="cover-footer-item">
+                    <span class="cover-footer-label">Prepared For</span>
+                    <span class="cover-footer-value">Nexus Mining</span>
+                </div>
+                <div class="cover-footer-item">
+                    <span class="cover-footer-label">Prepared By</span>
+                    <span class="cover-footer-value">Dynamic Code</span>
+                </div>
+                <div class="cover-footer-item">
+                    <span class="cover-footer-label">Date</span>
+                    <span class="cover-footer-value" id="currentDate"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: OVERVIEW & PROBLEM -->
+    <div class="page">
+        <div class="accent-bar"></div>
+        <div class="page-inner">
+            <div class="page-header">
+                <img src="dynamiccode-logo.svg" alt="Dynamic Code" class="page-header-logo">
+                <span class="page-header-title">Nexus Mining × Dynamic Code</span>
+            </div>
+            <h1>The Problem & Solution</h1>
+            <div class="section">
+                <h2>Current State</h2>
+                <div class="info-card">
+                    <ul>
+                        <li>Bookings submitted via forms and managed manually in spreadsheets</li>
+                        <li>No real-time visibility into capacity, bookings, or check-ins</li>
+                        <li>No automation for confirmations, reminders, or notifications</li>
+                        <li>No reliable attendance tracking — no-shows go unrecorded</li>
+                        <li>Admin workload is high; errors and missed bookings are common</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Our Solution</h2>
+                <p>Dynamic Code will design and build a modern, web-based transport management platform that handles the full lifecycle of every booking:</p>
+                <div class="info-card" style="margin-top: 4mm;">
+                    <p style="text-align: center; font-size: 12pt; font-weight: 600; color: var(--black); margin: 0;">
+                        Booking → Confirmation → Payment → Check-In → Reporting
+                    </p>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Who Uses It</h2>
+                <div class="deliverables-grid">
+                    <div class="deliverable-card">
+                        <div class="deliverable-icon">⛏️</div>
+                        <div class="deliverable-title">Passengers (Miners)</div>
+                        <div class="deliverable-desc">Book transport, manage trips, check in via QR or NFC, receive SMS/email reminders, and access digital tickets.</div>
+                    </div>
+                    <div class="deliverable-card">
+                        <div class="deliverable-icon">🖥️</div>
+                        <div class="deliverable-title">Admin (Office Staff)</div>
+                        <div class="deliverable-desc">Full control panel to manage bookings, schedules, capacity, check-ins, reporting, and financial data.</div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Key Benefits</h2>
+                <div class="info-card">
+                    <ul>
+                        <li>Eliminates manual spreadsheets and reduces admin workload significantly</li>
+                        <li>Full real-time visibility across all bookings, trips, and capacity</li>
+                        <li>Automated SMS and email communications — no manual follow-up</li>
+                        <li>Reliable attendance and no-show tracking on every route</li>
+                        <li>Scalable infrastructure built to grow with operations</li>
+                    </ul>
+                </div>
+            </div>
+            <span class="page-number">02</span>
+        </div>
+    </div>
+
+    <!-- PAGE 3: FEATURES -->
+    <div class="page">
+        <div class="accent-bar"></div>
+        <div class="page-inner">
+            <div class="page-header">
+                <img src="dynamiccode-logo.svg" alt="Dynamic Code" class="page-header-logo">
+                <span class="page-header-title">Nexus Mining × Dynamic Code</span>
+            </div>
+            <h1>Core Features</h1>
+            <div class="deliverables-grid">
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">📋</div>
+                    <div class="deliverable-title">Booking System</div>
+                    <div class="deliverable-desc">Passengers select pickup location, date, time slot, and optional return trip. Validation rules enforce change deadlines (e.g. 24hrs). Automatic account creation on first booking.</div>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">🔐</div>
+                    <div class="deliverable-title">OTP Authentication</div>
+                    <div class="deliverable-desc">Passwordless login via mobile OTP. Fast, lightweight, and user-friendly — no account setup required beyond a phone number.</div>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">📊</div>
+                    <div class="deliverable-title">Admin Dashboard</div>
+                    <div class="deliverable-desc">Central control panel with full visibility across users, bookings (Pending / Confirmed / Completed / Cancelled), trips, capacity, and attendance.</div>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">📱</div>
+                    <div class="deliverable-title">QR + NFC Check-In</div>
+                    <div class="deliverable-desc">Dual check-in system. NFC tap for a premium frictionless experience; QR code scan as the universal fallback. Works offline with sync on reconnect.</div>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">💬</div>
+                    <div class="deliverable-title">Notifications</div>
+                    <div class="deliverable-desc">Automated email (Resend) and SMS (Twilio) for booking confirmations, trip reminders, and boarding alerts. No manual follow-up required.</div>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">💳</div>
+                    <div class="deliverable-title">Payments (Optional)</div>
+                    <div class="deliverable-desc">Stripe integration for pay-at-booking. Reduces no-shows, enables automated reconciliation, and optionally syncs with Xero for accounting.</div>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Technical Stack</h2>
+                <div class="info-card">
+                    <ul>
+                        <li><strong>Frontend:</strong> Next.js (React) — mobile-responsive passenger and admin interfaces</li>
+                        <li><strong>Backend:</strong> API-driven architecture via Vercel serverless functions</li>
+                        <li><strong>Database:</strong> Neon (PostgreSQL) — central source of truth</li>
+                        <li><strong>Hosting:</strong> Vercel — fast, scalable, zero-downtime deployments</li>
+                        <li><strong>Integrations:</strong> Resend (email), Twilio (SMS/OTP), Stripe (payments), Xero (optional)</li>
+                    </ul>
+                </div>
+            </div>
+            <span class="page-number">03</span>
+        </div>
+    </div>
+
+    <!-- PAGE 4: PHASES & TIMELINE -->
+    <div class="page">
+        <div class="accent-bar"></div>
+        <div class="page-inner">
+            <div class="page-header">
+                <img src="dynamiccode-logo.svg" alt="Dynamic Code" class="page-header-logo">
+                <span class="page-header-title">Nexus Mining × Dynamic Code</span>
+            </div>
+            <h1>Development Phases</h1>
+            <div class="section">
+                <p>The platform is built in phases to deliver value quickly while leaving room to expand. The initial engagement covers Phases 1 and 2 within the 2-month timeline.</p>
+            </div>
+            <div class="phases-list">
+                <div class="phase-item">
+                    <div class="phase-num">1</div>
+                    <div class="phase-content">
+                        <h3>Core Web Platform — MVP (Month 1)</h3>
+                        <p>Booking system, admin dashboard, OTP login, QR check-in, and automated notifications (email + SMS). Fully functional passenger and admin interfaces.</p>
+                    </div>
+                </div>
+                <div class="phase-item">
+                    <div class="phase-num">2</div>
+                    <div class="phase-content">
+                        <h3>Payments & Automation (Month 2)</h3>
+                        <p>Stripe payment integration, financial tracking, automated reconciliation, reporting improvements, and optional Xero sync.</p>
+                    </div>
+                </div>
+                <div class="phase-item">
+                    <div class="phase-num">3</div>
+                    <div class="phase-content">
+                        <h3>NFC & Enhanced Experience (Post-Launch)</h3>
+                        <p>NFC tag rollout across buses, dual check-in system (NFC + QR), and optional Apple/Google Wallet digital passes.</p>
+                    </div>
+                </div>
+                <div class="phase-item">
+                    <div class="phase-num">4</div>
+                    <div class="phase-content">
+                        <h3>Mobile App (Optional Future)</h3>
+                        <p>Native iOS/Android app using the same backend — enhanced UX with native camera, NFC, and push notifications.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="section" style="margin-top: 8mm;">
+                <h2>Project Timeline</h2>
+                <div class="info-card">
+                    <ul>
+                        <li><strong>Week 1–2:</strong> Discovery, architecture, database design, environment setup</li>
+                        <li><strong>Week 3–5:</strong> Booking system, OTP auth, passenger interface, admin dashboard</li>
+                        <li><strong>Week 6–7:</strong> QR check-in, notifications (email/SMS), testing</li>
+                        <li><strong>Week 8:</strong> Stripe payments, reporting, QA, staging deployment, handover</li>
+                    </ul>
+                </div>
+            </div>
+            <span class="page-number">04</span>
+        </div>
+    </div>
+
+    <!-- PAGE 5: INVESTMENT & AGREEMENT -->
+    <div class="page">
+        <div class="accent-bar"></div>
+        <div class="page-inner">
+            <div class="page-header">
+                <img src="dynamiccode-logo.svg" alt="Dynamic Code" class="page-header-logo">
+                <span class="page-header-title">Nexus Mining × Dynamic Code</span>
+            </div>
+            <h1>Investment</h1>
+            <div class="pricing-card">
+                <div class="pricing-row">
+                    <span class="pricing-label">Phase 1 — Core Web Platform (MVP)</span>
+                    <span class="pricing-value">$9,000 AUD</span>
+                </div>
+                <div class="pricing-row">
+                    <span class="pricing-label">Phase 2 — Payments & Automation</span>
+                    <span class="pricing-value">$9,000 AUD</span>
+                </div>
+                <div class="pricing-total">
+                    <div class="pricing-row">
+                        <span class="pricing-total-label">Total Project Investment</span>
+                        <span class="pricing-total-value">$18,000 AUD</span>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="info-card">
+                    <p style="margin: 0;"><strong>Payment Schedule:</strong> 50% deposit ($9,000) on project commencement. 50% ($9,000) on completion and delivery of Phase 2.</p>
+                </div>
+            </div>
+            <div class="section">
+                <h2>What's Included</h2>
+                <div class="info-card">
+                    <ul>
+                        <li>Full design and development of the web application (Phases 1 & 2)</li>
+                        <li>Passenger booking interface and admin control panel</li>
+                        <li>OTP authentication, QR check-in, and notifications system</li>
+                        <li>Stripe payment integration and financial reporting</li>
+                        <li>Deployment to production on Vercel</li>
+                        <li>30 days post-launch support and bug fixes</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="section">
+                <h2>Project Terms</h2>
+                <div class="info-card">
+                    <ul>
+                        <li><strong>Timeline:</strong> 2 months from project commencement</li>
+                        <li><strong>Revisions:</strong> Up to 2 rounds of revisions per phase included</li>
+                        <li><strong>Ownership:</strong> Full source code and IP transferred to client on final payment</li>
+                        <li><strong>Hosting:</strong> Client responsible for ongoing hosting and third-party service costs</li>
+                    </ul>
+                </div>
+            </div>
+            <span class="page-number">05</span>
+        </div>
+    </div>
+
+    <!-- PAGE 6: SIGNATURE -->
+    <div class="page">
+        <div class="accent-bar"></div>
+        <div class="page-inner">
+            <div class="page-header">
+                <img src="dynamiccode-logo.svg" alt="Dynamic Code" class="page-header-logo">
+                <span class="page-header-title">Nexus Mining × Dynamic Code</span>
+            </div>
+            <h1>Agreement</h1>
+            <div class="section">
+                <p>By signing below, you agree to the development of the Mining Transport Booking & Check-In System as outlined in this proposal, at a total investment of <strong>$18,000 AUD</strong> over a <strong>2-month timeline</strong>.</p>
+            </div>
+            <div class="signature-section">
+                <h3>Client Signature</h3>
+                <div class="signature-canvas-wrapper">
+                    <div id="signaturePlaceholder" class="signature-placeholder">
+                        Click "Start Signing" below to sign this proposal
+                    </div>
+                    <canvas id="signatureCanvas" style="display: none;"></canvas>
+                </div>
+                <div class="signature-buttons">
+                    <button class="btn btn-primary" onclick="startSigning()">Start Signing</button>
+                    <button class="btn btn-secondary" onclick="clearSignature()" style="display: none;" id="clearBtn">Clear</button>
+                    <button class="btn btn-primary" onclick="saveSignature()" style="display: none;" id="saveBtn">Save Signature</button>
+                </div>
+                <div class="signature-info">
+                    <p><strong>Name:</strong> <span id="sigName"></span></p>
+                    <p><strong>Company:</strong> <span id="sigCompany">Nexus Mining</span></p>
+                    <p><strong>Date:</strong> <span id="sigDate"></span></p>
+                </div>
+            </div>
+            <div class="section" style="margin-top: 8mm;">
+                <h3>Terms & Conditions</h3>
+                <div class="info-card">
+                    <ul style="font-size: 9pt;">
+                        <li>Project commences upon receipt of 50% deposit ($9,000 AUD)</li>
+                        <li>Balance of $9,000 AUD due on completion of Phase 2</li>
+                        <li>Full source code and IP transferred to client upon final payment</li>
+                        <li>Dynamic Code retains the right to reference the project in portfolio</li>
+                        <li>Either party may terminate with 14 days written notice; work completed to date will be invoiced</li>
+                        <li>Ongoing hosting, SMS, email, and payment processing costs are the client's responsibility</li>
+                    </ul>
+                </div>
+            </div>
+            <span class="page-number">06</span>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function togglePasswordVisibility() {
+        const input = document.getElementById('passwordInput');
+        const toggle = document.getElementById('passwordToggle');
+        input.type = input.type === 'password' ? 'text' : 'password';
+        toggle.setAttribute('aria-label', input.type === 'password' ? 'Show password' : 'Hide password');
+    }
+
+    const CORRECT_PASSWORD = 'NexusMining';
+    const WEBHOOK_URL = 'https://discord.com/api/webhooks/1468307018715496469/gIi4eszVYBz5lbHPwKU-BILNtUtvCFDE1eqtBNz8NpfP4SsH54R0cbiMEEyZoA4QXYu-';
+
+    function checkPassword() {
+        const input = document.getElementById('passwordInput').value;
+        const error = document.getElementById('passwordError');
+        if (input === CORRECT_PASSWORD) {
+            document.getElementById('passwordScreen').style.display = 'none';
+            document.getElementById('proposalContent').style.display = 'block';
+            if (!localStorage.getItem('proposalViewed_nexus')) {
+                localStorage.setItem('proposalViewed_nexus', new Date().toISOString());
+                sendWebhook('Proposal Viewed', 'Someone accessed the Nexus Mining proposal');
+            }
+        } else {
+            error.textContent = 'Incorrect password. Please try again.';
+        }
+    }
+
+    document.getElementById('passwordInput').addEventListener('keypress', e => { if (e.key === 'Enter') checkPassword(); });
+
+    const today = new Date();
+    const dateStr = today.toLocaleDateString('en-AU', { year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById('currentDate').textContent = dateStr;
+    document.getElementById('sigDate').textContent = dateStr;
+
+    let canvas, ctx, drawing = false;
+    function startSigning() {
+        document.getElementById('signaturePlaceholder').style.display = 'none';
+        document.getElementById('signatureCanvas').style.display = 'block';
+        document.getElementById('clearBtn').style.display = 'inline-block';
+        document.getElementById('saveBtn').style.display = 'inline-block';
+        canvas = document.getElementById('signatureCanvas');
+        ctx = canvas.getContext('2d');
+        canvas.width = canvas.parentElement.offsetWidth;
+        canvas.height = 100;
+        ctx.strokeStyle = '#000'; ctx.lineWidth = 2; ctx.lineCap = 'round';
+        ['mousedown','mousemove','mouseup','mouseout'].forEach(ev => canvas.addEventListener(ev, ev === 'mousedown' ? startDrawing : ev === 'mousemove' ? draw : stopDrawing));
+        ['touchstart','touchmove','touchend'].forEach(ev => canvas.addEventListener(ev, ev === 'touchstart' ? startDrawing : ev === 'touchmove' ? draw : stopDrawing));
+    }
+    function startDrawing(e) { drawing = true; draw(e); }
+    function draw(e) {
+        if (!drawing) return; e.preventDefault();
+        const rect = canvas.getBoundingClientRect();
+        const x = e.touches ? e.touches[0].clientX - rect.left : e.clientX - rect.left;
+        const y = e.touches ? e.touches[0].clientY - rect.top : e.clientY - rect.top;
+        ctx.lineTo(x, y); ctx.stroke(); ctx.beginPath(); ctx.moveTo(x, y);
+    }
+    function stopDrawing() { drawing = false; ctx.beginPath(); }
+    function clearSignature() { ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.beginPath(); }
+    function saveSignature() {
+        localStorage.setItem('proposalSignature_nexus', canvas.toDataURL());
+        alert('Signature saved! Thank you for your agreement.');
+        sendWebhook('Proposal Signed', 'Nexus Mining proposal has been signed');
+    }
+    function sendWebhook(action, description) {
+        fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ embeds: [{ title: `Nexus Mining Proposal - ${action}`, description, color: 0xF5A623, fields: [{ name: 'Client', value: 'Nexus Mining', inline: true }, { name: 'Project', value: 'Transport Booking & Check-In System', inline: true }, { name: 'Investment', value: '$18,000 AUD', inline: true }], timestamp: new Date().toISOString() }] }) }).catch(() => {});
+    }
+</script>
+</body>
+</html>
