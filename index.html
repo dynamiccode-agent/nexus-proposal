@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Mining × Dynamic Code — Transport Platform Proposal</title>
+    <title>Nexus Mining × Dynamic Code — Transport Scheduling Platform Proposal</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -174,9 +174,9 @@
             </div>
             <div class="cover-main">
                 <p class="cover-eyebrow">Web Application Proposal</p>
-                <h1 class="cover-title">Mining Transport<br>Booking &<br>Check-In System</h1>
-                <p class="cover-subtitle">Full-Stack Transport Operations Platform</p>
-                <p class="cover-description">A centralised, automated, and scalable digital platform to replace manual spreadsheets — managing bookings, scheduling, check-ins, notifications, and reporting for DIDO mining transport operations.</p>
+                <h1 class="cover-title">Transport<br>Scheduling &<br>Operations Platform</h1>
+                <p class="cover-subtitle">Real-Time Scheduling, Capacity Management & Passenger Tracking</p>
+                <p class="cover-description">A centralised, real-time transport operations platform that digitises your scheduled runs — replacing spreadsheets with a live system that manages capacity, passenger bookings, check-ins, and operational reporting for DIDO mining transport.</p>
             </div>
             <div class="cover-footer">
                 <div class="cover-footer-item">
@@ -208,20 +208,20 @@
                 <h2>Current State</h2>
                 <div class="info-card">
                     <ul>
-                        <li>Bookings submitted via forms and managed manually in spreadsheets</li>
-                        <li>No real-time visibility into capacity, bookings, or check-ins</li>
-                        <li>No automation for confirmations, reminders, or notifications</li>
-                        <li>No reliable attendance tracking — no-shows go unrecorded</li>
-                        <li>Admin workload is high; errors and missed bookings are common</li>
+                        <li>Scheduled runs managed manually across spreadsheets — error-prone and time-consuming</li>
+                        <li>No real-time visibility into seat availability, bookings, or attendance per run</li>
+                        <li>Overbooking risk: no automated capacity enforcement per scheduled run</li>
+                        <li>No automated confirmations, reminders, or boarding notifications</li>
+                        <li>No-shows go unrecorded — no check-in data tied to individual runs</li>
                     </ul>
                 </div>
             </div>
             <div class="section">
                 <h2>Our Solution</h2>
-                <p>Dynamic Code will design and build a modern, web-based transport management platform that handles the full lifecycle of every booking:</p>
+                <p>Dynamic Code will build a purpose-built transport scheduling and operations platform — a digital replacement for your spreadsheet workflow that enforces structure, automates communication, and gives you real-time operational control.</p>
                 <div class="info-card" style="margin-top: 4mm;">
                     <p style="text-align: center; font-size: 12pt; font-weight: 600; color: var(--black); margin: 0;">
-                        Booking → Confirmation → Payment → Check-In → Reporting
+                        Scheduled Run → Passenger Booking → Seat Enforcement → Check-In → Live Reporting
                     </p>
                 </div>
             </div>
@@ -231,24 +231,24 @@
                     <div class="deliverable-card">
                         <div class="deliverable-icon">⛏️</div>
                         <div class="deliverable-title">Passengers (Miners)</div>
-                        <div class="deliverable-desc">Book transport, manage trips, check in via QR or NFC, receive SMS/email reminders, and access digital tickets.</div>
+                        <div class="deliverable-desc">Browse available scheduled runs, select a route and time, confirm their seat, check in on board via QR or NFC, and receive automated reminders.</div>
                     </div>
                     <div class="deliverable-card">
                         <div class="deliverable-icon">🖥️</div>
                         <div class="deliverable-title">Admin (Office Staff)</div>
-                        <div class="deliverable-desc">Full control panel to manage bookings, schedules, capacity, check-ins, reporting, and financial data.</div>
+                        <div class="deliverable-desc">Create and manage scheduled runs, assign capacity and drivers, monitor bookings per run in real time, track attendance, and export reports.</div>
                     </div>
                 </div>
             </div>
             <div class="section">
-                <h2>Key Benefits</h2>
+                <h2>Why It Matters</h2>
                 <div class="info-card">
                     <ul>
-                        <li>Eliminates manual spreadsheets and reduces admin workload significantly</li>
-                        <li>Full real-time visibility across all bookings, trips, and capacity</li>
-                        <li>Automated SMS and email communications — no manual follow-up</li>
-                        <li>Reliable attendance and no-show tracking on every route</li>
-                        <li>Scalable infrastructure built to grow with operations</li>
+                        <li>Replaces the spreadsheet with a live, structured scheduling system</li>
+                        <li>Enforces seat capacity per run — no overbooking, ever</li>
+                        <li>Full real-time visibility: who's booked, who's checked in, who's a no-show</li>
+                        <li>Automated passenger communications — zero manual follow-up</li>
+                        <li>Designed to scale: add routes, drivers, and runs without increasing admin burden</li>
                     </ul>
                 </div>
             </div>
@@ -267,45 +267,55 @@
             <h1>Core Features</h1>
             <div class="deliverables-grid">
                 <div class="deliverable-card">
-                    <div class="deliverable-icon">📋</div>
-                    <div class="deliverable-title">Booking System</div>
-                    <div class="deliverable-desc">Passengers select pickup location, date, time slot, and optional return trip. Validation rules enforce change deadlines (e.g. 24hrs). Automatic account creation on first booking.</div>
+                    <div class="deliverable-icon">🗓️</div>
+                    <div class="deliverable-title">Scheduled Run Management</div>
+                    <div class="deliverable-desc">Admin creates runs with a fixed route, date, time, capacity, and assigned driver. Passengers book seats against defined runs — no custom time selection.</div>
                 </div>
                 <div class="deliverable-card">
-                    <div class="deliverable-icon">🔐</div>
-                    <div class="deliverable-title">OTP Authentication</div>
-                    <div class="deliverable-desc">Passwordless login via mobile OTP. Fast, lightweight, and user-friendly — no account setup required beyond a phone number.</div>
+                    <div class="deliverable-icon">📋</div>
+                    <div class="deliverable-title">Passenger Booking Flow</div>
+                    <div class="deliverable-desc">Passenger selects route → system shows available runs → selects a run → system checks seats → confirms booking. Clean, structured, and capacity-enforced.</div>
                 </div>
                 <div class="deliverable-card">
                     <div class="deliverable-icon">📊</div>
-                    <div class="deliverable-title">Admin Dashboard</div>
-                    <div class="deliverable-desc">Central control panel with full visibility across users, bookings (Pending / Confirmed / Completed / Cancelled), trips, capacity, and attendance.</div>
+                    <div class="deliverable-title">Schedule Dashboard (Admin)</div>
+                    <div class="deliverable-desc">Table-based schedule view mirroring the current spreadsheet workflow — grouped by date and route. Full run management: create, edit, assign capacity, view passengers.</div>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">🪑</div>
+                    <div class="deliverable-title">Live Capacity Tracking</div>
+                    <div class="deliverable-desc">Real-time seat availability per run. System prevents overbooking automatically. Admin can see booked vs available seats across all scheduled runs at a glance.</div>
                 </div>
                 <div class="deliverable-card">
                     <div class="deliverable-icon">📱</div>
                     <div class="deliverable-title">QR + NFC Check-In</div>
-                    <div class="deliverable-desc">Dual check-in system. NFC tap for a premium frictionless experience; QR code scan as the universal fallback. Works offline with sync on reconnect.</div>
+                    <div class="deliverable-desc">Check-in validates against a specific run and booking within a valid time window. NFC tap (premium) or QR scan (universal fallback). Offline-capable with sync on reconnect.</div>
+                </div>
+                <div class="deliverable-card">
+                    <div class="deliverable-icon">🔐</div>
+                    <div class="deliverable-title">OTP Authentication</div>
+                    <div class="deliverable-desc">Passwordless login via mobile OTP through Twilio. No account setup required — first booking creates the passenger profile automatically.</div>
                 </div>
                 <div class="deliverable-card">
                     <div class="deliverable-icon">💬</div>
-                    <div class="deliverable-title">Notifications</div>
-                    <div class="deliverable-desc">Automated email (Resend) and SMS (Twilio) for booking confirmations, trip reminders, and boarding alerts. No manual follow-up required.</div>
+                    <div class="deliverable-title">Automated Notifications</div>
+                    <div class="deliverable-desc">Email (Resend) and SMS (Twilio) for booking confirmations, run reminders, and boarding alerts — all triggered automatically, zero manual effort.</div>
                 </div>
                 <div class="deliverable-card">
                     <div class="deliverable-icon">💳</div>
                     <div class="deliverable-title">Payments (Optional)</div>
-                    <div class="deliverable-desc">Stripe integration for pay-at-booking. Reduces no-shows, enables automated reconciliation, and optionally syncs with Xero for accounting.</div>
+                    <div class="deliverable-desc">Stripe integration for pay-at-booking. Reduces no-shows, enables automated reconciliation, and syncs with Xero for accounting.</div>
                 </div>
             </div>
             <div class="section">
-                <h2>Technical Stack</h2>
+                <h2>Operational Enhancements</h2>
                 <div class="info-card">
                     <ul>
-                        <li><strong>Frontend:</strong> Next.js (React) — mobile-responsive passenger and admin interfaces</li>
-                        <li><strong>Backend:</strong> API-driven architecture via Vercel serverless functions</li>
-                        <li><strong>Database:</strong> Neon (PostgreSQL) — central source of truth</li>
-                        <li><strong>Hosting:</strong> Vercel — fast, scalable, zero-downtime deployments</li>
-                        <li><strong>Integrations:</strong> Resend (email), Twilio (SMS/OTP), Stripe (payments), Xero (optional)</li>
+                        <li><strong>No-show tracking:</strong> Unscanned bookings automatically flagged post-departure</li>
+                        <li><strong>Waitlist system:</strong> Passengers join a waitlist when runs reach capacity</li>
+                        <li><strong>Recurring run templates:</strong> Create daily/weekly routes without manual re-entry</li>
+                        <li><strong>CSV import:</strong> Bulk schedule setup from existing spreadsheets</li>
+                        <li><strong>Booking status flow:</strong> Pending → Confirmed → Completed / Cancelled / Rescheduled</li>
                     </ul>
                 </div>
             </div>
@@ -323,35 +333,35 @@
             </div>
             <h1>Development Phases</h1>
             <div class="section">
-                <p>The platform is built in phases to deliver value quickly while leaving room to expand. The initial engagement covers Phases 1 and 2 within the 2-month timeline.</p>
+                <p>The platform is delivered in two phases over 2 months. Each phase is a functional, production-ready release — not a prototype.</p>
             </div>
             <div class="phases-list">
                 <div class="phase-item">
                     <div class="phase-num">1</div>
                     <div class="phase-content">
-                        <h3>Core Web Platform — MVP (Month 1)</h3>
-                        <p>Booking system, admin dashboard, OTP login, QR check-in, and automated notifications (email + SMS). Fully functional passenger and admin interfaces.</p>
+                        <h3>Core Scheduling Platform — MVP (Month 1)</h3>
+                        <p>Scheduled run management, admin schedule dashboard (table view by date/route), passenger booking flow, capacity enforcement, OTP login, QR check-in, no-show tracking, and automated notifications (email + SMS).</p>
                     </div>
                 </div>
                 <div class="phase-item">
                     <div class="phase-num">2</div>
                     <div class="phase-content">
-                        <h3>Payments & Automation (Month 2)</h3>
-                        <p>Stripe payment integration, financial tracking, automated reconciliation, reporting improvements, and optional Xero sync.</p>
+                        <h3>Payments, Automation & Reporting (Month 2)</h3>
+                        <p>Stripe payment integration, financial tracking, waitlist system, recurring run templates, CSV schedule import, advanced admin reporting, and optional Xero sync.</p>
                     </div>
                 </div>
                 <div class="phase-item">
                     <div class="phase-num">3</div>
                     <div class="phase-content">
-                        <h3>NFC & Enhanced Experience (Post-Launch)</h3>
-                        <p>NFC tag rollout across buses, dual check-in system (NFC + QR), and optional Apple/Google Wallet digital passes.</p>
+                        <h3>NFC & Enhanced Check-In (Post-Launch)</h3>
+                        <p>NFC tag rollout across the fleet — passengers tap to check in. Dual system (NFC primary + QR fallback). Optional Apple/Google Wallet digital passes.</p>
                     </div>
                 </div>
                 <div class="phase-item">
                     <div class="phase-num">4</div>
                     <div class="phase-content">
                         <h3>Mobile App (Optional Future)</h3>
-                        <p>Native iOS/Android app using the same backend — enhanced UX with native camera, NFC, and push notifications.</p>
+                        <p>Native iOS/Android app using the same backend — native camera, NFC, push notifications, and offline-first check-in.</p>
                     </div>
                 </div>
             </div>
@@ -359,10 +369,10 @@
                 <h2>Project Timeline</h2>
                 <div class="info-card">
                     <ul>
-                        <li><strong>Week 1–2:</strong> Discovery, architecture, database design, environment setup</li>
-                        <li><strong>Week 3–5:</strong> Booking system, OTP auth, passenger interface, admin dashboard</li>
-                        <li><strong>Week 6–7:</strong> QR check-in, notifications (email/SMS), testing</li>
-                        <li><strong>Week 8:</strong> Stripe payments, reporting, QA, staging deployment, handover</li>
+                        <li><strong>Week 1–2:</strong> Discovery, data modelling, run/schedule schema design, environment setup</li>
+                        <li><strong>Week 3–4:</strong> Run management, admin schedule dashboard, passenger booking flow, capacity enforcement</li>
+                        <li><strong>Week 5–6:</strong> OTP auth, QR check-in (run-validated), notifications (email/SMS), no-show tracking</li>
+                        <li><strong>Week 7–8:</strong> Payments, waitlist, recurring templates, CSV import, reporting, QA, staging & handover</li>
                     </ul>
                 </div>
             </div>
@@ -381,11 +391,11 @@
             <h1>Investment</h1>
             <div class="pricing-card">
                 <div class="pricing-row">
-                    <span class="pricing-label">Phase 1 — Core Web Platform (MVP)</span>
+                    <span class="pricing-label">Phase 1 — Core Scheduling Platform (MVP)</span>
                     <span class="pricing-value">$9,000 AUD</span>
                 </div>
                 <div class="pricing-row">
-                    <span class="pricing-label">Phase 2 — Payments & Automation</span>
+                    <span class="pricing-label">Phase 2 — Payments, Automation & Reporting</span>
                     <span class="pricing-value">$9,000 AUD</span>
                 </div>
                 <div class="pricing-total">
@@ -404,12 +414,13 @@
                 <h2>What's Included</h2>
                 <div class="info-card">
                     <ul>
-                        <li>Full design and development of the web application (Phases 1 & 2)</li>
-                        <li>Passenger booking interface and admin control panel</li>
-                        <li>OTP authentication, QR check-in, and notifications system</li>
-                        <li>Stripe payment integration and financial reporting</li>
-                        <li>Deployment to production on Vercel</li>
-                        <li>30 days post-launch support and bug fixes</li>
+                        <li>Full design and development of the platform (Phases 1 & 2)</li>
+                        <li>Scheduled run management, admin schedule dashboard, and live capacity tracking</li>
+                        <li>Passenger booking flow (route → run selection → seat confirmation)</li>
+                        <li>OTP authentication, QR check-in (run-validated), and no-show tracking</li>
+                        <li>Automated notifications, waitlist, recurring templates, and CSV import</li>
+                        <li>Stripe payment integration and operational reporting</li>
+                        <li>Production deployment on Vercel + 30 days post-launch support</li>
                     </ul>
                 </div>
             </div>
@@ -438,7 +449,7 @@
             </div>
             <h1>Agreement</h1>
             <div class="section">
-                <p>By signing below, you agree to the development of the Mining Transport Booking & Check-In System as outlined in this proposal, at a total investment of <strong>$18,000 AUD</strong> over a <strong>2-month timeline</strong>.</p>
+                <p>By signing below, you agree to the development of the Transport Scheduling & Operations Platform as outlined in this proposal, at a total investment of <strong>$18,000 AUD</strong> over a <strong>2-month timeline</strong>.</p>
             </div>
             <div class="signature-section">
                 <h3>Client Signature</h3>
